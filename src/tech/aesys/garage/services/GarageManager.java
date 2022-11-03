@@ -28,6 +28,63 @@ public class GarageManager {
 		garage.extractVehicle(vehicle);
 	}
 	
+	public static void insert() {
+		System.out.println("Che veicolo vuoi inserire? (auto, van, moto)");
+		Scanner scanner = new Scanner(System.in);
+		String selected = scanner.nextLine();
+		if (selected.equals("auto")) {
+			System.out.println("Inserisci Brand:");
+			String brand = scanner.nextLine();
+			System.out.println("Inserisci Alimentazione:");
+			String supply = scanner.nextLine();
+			PowerSupplyEnum pSupply;
+			if(supply.equals("benzina")) {
+				pSupply = PowerSupplyEnum.GASOLINE;
+			} else if (supply.equals("diesel")) {
+				pSupply = PowerSupplyEnum.DIESEL;
+			} else {
+				System.out.println("Alimentazione non valida");
+				return;
+			}
+			System.out.println("Inserisci Anno:");
+			int year = scanner.nextInt();
+			System.out.println("Inserisci Cilindrata:");
+			int displacement = scanner.nextInt();
+			System.out.println("Inserisci Numero di Porte:");
+			int doors = scanner.nextInt();
+			garage.addVehicle(new Car(brand, year, displacement, doors, pSupply));
+		} else if(selected.equals("van")) {
+			System.out.println("Inserisci Brand:");
+			String brand = scanner.nextLine();
+			System.out.println("Inserisci Anno:");
+			int year = scanner.nextInt();
+			System.out.println("Inserisci Cilindrata:");
+			int displacement = scanner.nextInt();
+			System.out.println("Inserisci Capacità:");
+			int capacity = scanner.nextInt();
+			garage.addVehicle(new Van(brand, year, displacement, capacity));
+		} else if (selected.equals("moto")) {
+			System.out.println("Inserisci Brand:");
+			String brand = scanner.nextLine();
+			System.out.println("Inserisci Anno:");
+			int year = scanner.nextInt();
+			System.out.println("Inserisci Cilindrata:");
+			int displacement = scanner.nextInt();
+			System.out.println("Inserisci Tempi:");
+			int strokes = scanner.nextInt();
+			CycleEnum cycle;
+			if(strokes == 2) {
+				cycle = CycleEnum.TWO_STROKES;
+			} else if (strokes == 4) {
+				cycle = CycleEnum.FOUR_STROKES;
+			} else {
+				System.out.println("Non valido");
+				return;
+			}
+			garage.addVehicle(new Motorcycle(brand, year, displacement, cycle));
+		}
+	}
+	
 	public static void showGarage() {
 		garage.showGarage();
 	}

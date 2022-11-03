@@ -20,7 +20,7 @@ public class Application {
 			GarageManager.extract();
 			menu();
 		} else if(selected.equals("inserire")) {
-			System.out.println("la implementeremo...");
+			GarageManager.insert();
 			menu();
 		} else if (selected.equals("mostrare")) {
 			GarageManager.showGarage();
